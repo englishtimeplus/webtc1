@@ -17,7 +17,7 @@ const VideoChat = () => {
   const peerConnectionRef = useRef<RTCPeerConnection | null>(null);
 
   const startCall = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
     localStreamRef.current = stream;
     if (localVideoRef.current) localVideoRef.current.srcObject = stream;
 
@@ -47,7 +47,9 @@ const VideoChat = () => {
 
   useEffect(() => {
     socket.on('update-user-list', (users: { socketId: string; userId: string }[]) => {
+      console.log('users : ',users)
       setUserList(users);
+
     });
 
     socket.on('receive-offer', async ({ offer, senderSocketId }) => {
