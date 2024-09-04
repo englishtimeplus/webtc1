@@ -1,13 +1,25 @@
-import React from 'react';
-import VideoChat from './VideoChat';
+// pages/room/[id].tsx
+ 
+import { useRouter } from 'next/router';
+import io, { Socket } from 'socket.io-client';
 
-const HomePage = () => {
+interface Message {
+  userId: string;
+  message: string;
+}
+
+interface StreamData {
+  streamData: MediaStream;
+}
+
+const socket: Socket = io();
+
+export default function Room() {
+   
   return (
     <div>
-      <h1>WebRTC Telephone App</h1>
-      <VideoChat />
+      <h1>Room </h1>
+       
     </div>
   );
-};
-
-export default HomePage;
+}
