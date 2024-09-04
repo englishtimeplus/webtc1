@@ -15,7 +15,6 @@ interface StreamData {
 }
 
 const socket: Socket = io();
-
 export default function Room({params}:{params:{id:number}}) {
   const [stream, setStream] = useState<MediaStream | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
